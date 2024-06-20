@@ -14,7 +14,12 @@ function App() {
     <div id="parent">
       <Header />
 
+
+<CoachDetails/>
+<CoachDetails/>
 {/* <CoachDetails/> */}
+
+
 
 
       <div className='px-10'>

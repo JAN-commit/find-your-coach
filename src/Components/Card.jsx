@@ -3,8 +3,11 @@ import Modal from "./Modal";
 import ContactForm from "./ContactForm";
 
 export default function Card() {
-    const [openCardModal, setCardModal] = useState();
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
+    const toggleModal = () => {
+        setIsModalOpen(!isModalOpen);
+    };
 
     return (
         <div className='cursor-pointer'>
@@ -25,7 +28,7 @@ export default function Card() {
                         <div className="flex space-x-2 mb justify-center">
                             <button
                                 className="bg-primary px-3 py-1 rounded-md text-base-400 font-semibold"
-                                onClick={() => { setCardModal(true) }}
+                                onClick={toggleModal}
                             >
                                 Contact
                             </button>
@@ -35,9 +38,11 @@ export default function Card() {
                 </div>
             </div>
 
-            <Modal isVisible={openCardModal} handleClose={() => setCardModal(false)}>
-                <ContactForm />
-            </Modal>
+            {isModalOpen && (
+                <Modal isVisible={isModalOpen} handleClose={toggleModal}>
+                    <ContactForm />
+                </Modal>
+            )}
         </div>
     );
 }

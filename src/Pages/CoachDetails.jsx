@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Modal from '../Components/Card';
+import Modal from '../Components/Modal';
 import ContactForm from '../Components/ContactForm';
 
 export default function CoachDetails() {
