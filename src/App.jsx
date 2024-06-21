@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import Card from './Components/Card'
@@ -7,26 +8,28 @@ import Header from './Header'
 import HomePage from './Pages/HomePage'
 import ContactForm from './Components/ContactForm'
 import CoachDetails from './Pages/CoachDetails'
+import Login from './Pages/Login'
+import Signup from './Pages/Signup'
+import CoachRegistration from './Pages/CoachRegistration'
 
 function App() {
 
   return (
-    <div id="parent">
-      <Header />
+    <Router>
+      <div id="parent">
+        <Header />
+        <div className=''>
+          <Routes>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/CoachDetails/:id' element={<CoachDetails />} />
+            <Route path='/Login' element={<Login />} />
+            <Route path='/Signup' element={<Signup />} />
+            <Route path='/CoachRegistration' element={<CoachRegistration/>} />
+          </Routes>
+        </div>
 
-
-<CoachDetails/>
-<CoachDetails/>
-{/* <CoachDetails/> */}
-
-
-
-
-      <div className='px-10'>
-        <HomePage />
       </div>
-
-    </div>
+    </Router>
   )
 }
 
