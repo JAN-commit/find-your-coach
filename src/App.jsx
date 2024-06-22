@@ -11,6 +11,7 @@ import CoachDetails from './Pages/CoachDetails'
 import Login from './Pages/Login'
 import Signup from './Pages/Signup'
 import CoachRegistration from './Pages/CoachRegistration'
+import MessageRequest from './Pages/MessageRequest'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
             <Route path='/Login' element={<Login />} />
             <Route path='/Signup' element={<Signup />} />
             <Route path='/CoachRegistration' element={<CoachRegistration/>} />
+            <Route path='/MessageRequest' element={<MessageRequest/>} />
           </Routes>
         </div>
 

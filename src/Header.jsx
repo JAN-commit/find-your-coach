@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 export default function Header() {
     const navigate = useNavigate()
     const idToken = localStorage.getItem('idToken')
+    const userRole = localStorage.getItem('userRole')
     const islogin = idToken
 
     const Logout = () => {
@@ -39,9 +40,12 @@ export default function Header() {
                                 </div>
                             ) : (
                                 <div id='login'>
-                                    <li>
-                                        <Link to="/Signup">Request</Link>
-                                    </li>
+                                    {(userRole === 'coach') && (
+                                        <li>
+                                            <Link to="/MessageRequest">Request</Link>
+                                        </li>
+                                    )}
+
                                     <li>
                                         <Link to="/">
                                             <button onClick={Logout}> Logout</button>
@@ -76,9 +80,11 @@ export default function Header() {
                             </div>
                         ) : (
                             <div id='login' className='flex'>
-                                <li>
-                                    <Link to="/Signup">Request</Link>
-                                </li>
+                                    {(userRole === 'coach') && (
+                                        <li>
+                                            <Link to="/MessageRequest">Request</Link>
+                                        </li>
+                                    )}
                                 <li>
                                     <Link to="/">
                                         <button onClick={Logout}> Logout</button>

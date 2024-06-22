@@ -29,7 +29,7 @@ export default function CoachRegistration() {
                 // Otherwise, add the expertise to the array
                 setExpertise((prevExpertise) => [...prevExpertise, value]);
             }
-        } 
+        }
         else {
             // If checkbox is unchecked, remove it from expertise
             setExpertise((prevExpertise) => prevExpertise.filter(expertise => expertise !== value));

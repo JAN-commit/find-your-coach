@@ -15,7 +15,6 @@ export default function Card({ coach }) {
         Navigate(`/CoachDetails/${id}`);
     };
     
-
     return (
         <div>
             <div className="card bg-base-300 shadow-xl dark:bg-base-900">
@@ -23,7 +22,7 @@ export default function Card({ coach }) {
                     <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" />
                 </figure>
                 <div className="card-body pt-5">
-                    <h2 className="card-title">{coach.firstName} {coach.lastName}</h2>
+                    <h2 className="card-title text-sm md:text-xl">{coach.firstName} {coach.lastName}</h2>
                     <p>{coach.hourlyRate}/hr</p>
                     <div className="flex space-x- mb-4 justify-center md:justify-start flex-col md:flex-row">
                         {coach.expertise.map((exp, index) => (
@@ -45,7 +44,10 @@ export default function Card({ coach }) {
 
             {isModalOpen && (
                 <Modal isVisible={isModalOpen} handleClose={toggleModal}>
-                    <ContactForm />
+                    <ContactForm 
+                        toggleModal={toggleModal}
+                    id={coach.id}
+                    />
                 </Modal>
             )}
         </div>

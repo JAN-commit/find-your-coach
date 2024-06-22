@@ -8,7 +8,7 @@ export default function CoachDetails() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [coach, setCoach] = useState(null);
     const [error, setError] = useState(null);
-    
+
     useEffect(() => {
         const fetchCoachData = async () => {
             const database = import.meta.env.VITE_FIREBASE_DB_URL
@@ -50,7 +50,7 @@ export default function CoachDetails() {
                     <div id="TEXT" className="flex-grow">
                         <div className="capitalize flex flex-col justify-between items-center mb-2 md:flex-row">
                             <h1 className="text-xl font-bold">{`${coach.firstName} ${coach.lastName}`}</h1>
-                            <h1 className="text-xl font-bold">{}</h1>
+                            <h1 className="text-xl font-bold">{ }</h1>
                             <p className="text-lg">{coach.hourlyRate}/hour</p>
                         </div>
                         <div className="flex space-x-2 mb-4">
@@ -61,13 +61,17 @@ export default function CoachDetails() {
                         <p className="text-justify mb-4">
                             {coach.description}
                         </p>
-                        <button
-                            className="bg-blue-500 text-white px-4 py-2 rounded-md w-full md:w-auto"
-                            onClick={toggleModal}
-                        >
-                            Contact Now
-                        </button>
+                        <div className="text-center w-full">
+
+                            <button
+                                className="bg-blue-500 text-white px-4 py-2 rounded-md w-full md:w-auto"
+                                onClick={toggleModal}
+                            >
+                                Contact Now
+                            </button>
+                        </div>
                     </div>
+
                 </div>
             ) : (
                 <p>Loading...</p>
@@ -75,7 +79,10 @@ export default function CoachDetails() {
 
             {isModalOpen && (
                 <Modal isVisible={isModalOpen} handleClose={toggleModal}>
-                    <ContactForm />
+                    <ContactForm
+                        toggleModal={toggleModal}
+                        id={id}
+                    />
                 </Modal>
             )}
         </div>
