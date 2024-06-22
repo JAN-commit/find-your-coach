@@ -20,7 +20,12 @@ export default function Card({ coach }) {
             <div className="card bg-base-300 shadow-xl dark:bg-base-900">
                 <figure >
                     {/* <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /> */}
-                    <div className="skeleton h-32 w-full"></div>
+                    {/* <div className="skeleton h-32 w-full"></div> */}
+                    <div className="avatar">
+                        <div className="w-36 rounded">
+                            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                        </div>
+                    </div>
 
                 </figure>
                 <div className="card-body pt-5">
