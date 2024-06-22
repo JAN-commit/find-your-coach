@@ -98,10 +98,10 @@ export default function HomePage() {
     return (
         <div id='BODY'>
             <div className="px-5">
-                <div id="filter" className='border border-white px-5 py-1 '>
-                    <div id="FILTER" className='text-2xl '>
-                        <div className="font-semibold text-xl">Select Filter</div>
-                        <div className="flex flex-col sm:flex-row sm:space-x-3">
+                <div id="filter" className='border border-white rounded-2xl px-5 py-1 text-center'>
+                    <div id="FILTER" className='text-2xl py-5'>
+                        <div className="font-semibold text-xl pb-2">Select Filter</div>
+                        <div className="flex flex-col sm:flex-row sm:space-x-3 justify-center">
                             <div className="flex items-center space-x-2 ">
                                 <input type="checkbox" id="frontend" className="w-3 h-3" onChange={handleCheckboxChange} />
                                 <label htmlFor="frontend" className='text-lg'>Front End</label>
