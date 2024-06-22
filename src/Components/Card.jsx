@@ -18,8 +18,10 @@ export default function Card({ coach }) {
     return (
         <div>
             <div className="card bg-base-300 shadow-xl dark:bg-base-900">
-                <figure>
-                    <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" />
+                <figure >
+                    {/* <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /> */}
+                    <div className="skeleton h-32 w-full"></div>
+
                 </figure>
                 <div className="card-body pt-5">
                     <h2 className="card-title text-sm md:text-xl">{coach.firstName} {coach.lastName}</h2>

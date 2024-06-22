@@ -44,7 +44,9 @@ export default function CoachDetails() {
             {coach ? (
                 <div className="flex flex-col md:flex-row items-center md:items-start">
                     <div className="avatar rounded-xl overflow-hidden w-45 mb-4 md:mb-0 md:mr-4">
-                        <img src="/Images/profilepic.jpg" alt="Profile" className="object-cover w-45 h-45" />
+                        {/* <img src="/Images/profilepic.jpg" alt="Profile" className="object-cover w-45 h-45" /> */}
+                        <div className="skeleton h-32 w-full"></div>
+
                     </div>
 
                     <div id="TEXT" className="flex-grow">
