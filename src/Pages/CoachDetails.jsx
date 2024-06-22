@@ -8,11 +8,12 @@ export default function CoachDetails() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [coach, setCoach] = useState(null);
     const [error, setError] = useState(null);
-
+    
     useEffect(() => {
         const fetchCoachData = async () => {
+            const database = import.meta.env.VITE_FIREBASE_DB_URL
             try {
-                const response = await fetch(`https://find-your-coach-1be26-default-rtdb.firebaseio.com/account/${id}.json`);
+                const response = await fetch(`${database}account/${id}.json`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok.');
                 }

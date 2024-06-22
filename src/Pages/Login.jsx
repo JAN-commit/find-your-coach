@@ -46,8 +46,10 @@ export default function Login() {
     };
 
     const fetchUserRole = async (localId) => {
+        const database = import.meta.env.VITE_FIREBASE_DB_URL
+
         try {
-            const response = await fetch(`https://find-your-coach-1be26-default-rtdb.firebaseio.com/account/${localId}.json`);
+            const response = await fetch(`${database}account/${localId}.json`);
             if (!response.ok) {
                 throw new Error('Network response was not ok.');
             }
