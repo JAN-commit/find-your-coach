@@ -31,10 +31,10 @@ export default function Card({ coach }) {
                     </div>
                     <div className="card-actions flex justify-center md:justify-end">
                         <div className="flex space-x-2 mb justify-center">
-                            <button className="bg-primary px-2 py-1 rounded-md text-base-400 font-semibold" onClick={toggleModal}>
+                            <button className="bg-primary px-2 py-1 rounded-md text-base-300 font-semibold" onClick={toggleModal}>
                                 Contact
                             </button>
-                            <button className="bg-primary px-2 py-1 rounded-md text-base-400 font-semibold" onClick={() => navigateToDetails(coach.id)}>
+                            <button className="bg-primary px-2 py-1 rounded-md text-base-300 font-semibold" onClick={() => navigateToDetails(coach.id)}>
                                 Details
                             </button>
                         </div>
