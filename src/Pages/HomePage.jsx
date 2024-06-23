@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CardContainer from '../Components/CardContainer';
 import { useNavigate } from 'react-router-dom';
+import Modal from '../Components/Modal';
 
 export default function HomePage() {
     const Navigate = useNavigate();
@@ -14,6 +15,33 @@ export default function HomePage() {
         backend: false,
         fullstack: false,
     });
+
+
+    useEffect(() => {
+        const idToken = localStorage.getItem('idToken');
+
+        if (idToken) {
+            const interval = setInterval(() => {
+                const currentTime = new Date();
+                const storedExpiryTime = new Date(localStorage.getItem('expiresIn'));
+                // const storedExpiryTime = new Date(500);
+
+                if (currentTime >= storedExpiryTime) {
+                    localStorage.clear();
+                    clearInterval(interval);
+                    alert("Session Expired. Please Login Again");
+                    Navigate('/login');
+                }
+            }, 1000);
+
+            // Clean up interval on component unmount or when dependency changes
+            return () => clearInterval(interval);
+        } else {
+            Navigate('/login');
+
+            
+        }
+    }, []);
 
     const role = localStorage.getItem('userRole');
     const idToken = localStorage.getItem('idToken');
@@ -29,7 +57,7 @@ export default function HomePage() {
             }
             const data = await response.json();
 
-            
+
             const coaches = Object.keys(data).map(key => ({
                 id: key,
                 ...data[key]
@@ -45,7 +73,6 @@ export default function HomePage() {
 
     useEffect(() => {
         fetchCoaches();
-
     }, [dburl]);
 
     useEffect(() => {
@@ -95,12 +122,18 @@ export default function HomePage() {
         return <div>Loading...</div>;
     }
 
+
+
+
+
+
     return (
         <div id='BODY'>
+            
             <div className="px-5">
                 <div id="filter" className='border border-white rounded-2xl px-5 py-1 text-center'>
-                    <div id="FILTER" className='text-2xl py-5'>
-                        <div className="font-semibold text-xl pb-2">Select Filter</div>
+                    <div id="FILTER" className='text-2xl py-4'>
+                        <div className="font-bold text-xl pb-2">Select Filter</div>
                         <div className="flex flex-col sm:flex-row sm:space-x-3 justify-center">
                             <div className="flex items-center space-x-2 ">
                                 <input type="checkbox" id="frontend" className="w-3 h-3" onChange={handleCheckboxChange} />

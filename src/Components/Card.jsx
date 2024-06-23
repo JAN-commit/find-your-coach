@@ -21,7 +21,7 @@ export default function Card({ coach }) {
                 <figure >
                     {/* <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /> */}
                     {/* <div className="skeleton h-32 w-full"></div> */}
-                    <div className="avatar">
+                    <div className="avatar pt-3">
                         <div className="w-36 rounded">
                             <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                         </div>
@@ -31,7 +31,7 @@ export default function Card({ coach }) {
                 <div className="card-body pt-5">
                     <h2 className="card-title text-sm md:text-xl">{coach.firstName} {coach.lastName}</h2>
                     <p>{coach.hourlyRate}/hr</p>
-                    <div className="flex space-x- mb-4 justify-center md:justify-start flex-col md:flex-row">
+                    <div className="flex space-x- mb-4 justify-center md:justify-start flex-col md:flex-row ">
                         {coach.expertise.map((exp, index) => (
                             <button key={index} className="border px-1 py-1 rounded-md sm:px-2 sm:text-sm">{exp}</button>
                         ))}

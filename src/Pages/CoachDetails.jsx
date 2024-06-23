@@ -47,7 +47,7 @@ export default function CoachDetails() {
                         {/* <img src="/Images/profilepic.jpg" alt="Profile" className="object-cover w-45 h-45" /> */}
                         {/* <div className="skeleton h-32 w-full"></div> */}
                         <div className="avatar">
-                            <div className="w-40 rounded">
+                            <div className=" rounded">
                                 <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                             </div>
                         </div>
@@ -64,7 +64,7 @@ export default function CoachDetails() {
                                 <button key={index} className="border px-1 py-1 rounded-md sm:px-2 sm:text-sm">{exp}</button>
                             ))}
                         </div>
-                        <p className="text-justify mb-4">
+                        <p className="text-justify mb-4" style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}>
                             {coach.description}
                         </p>
                         <div className="text-center w-full">
