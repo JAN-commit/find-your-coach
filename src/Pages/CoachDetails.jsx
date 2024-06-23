@@ -43,17 +43,13 @@ export default function CoachDetails() {
         <div id="parent" className="max-w-4xl mx-auto p-4 sm:border rounded-lg shadow-md">
             {coach ? (
                 <div className="flex flex-col md:flex-row items-center md:items-start">
-                    <div className="avatar rounded-xl overflow-hidden w-45 mb-4 md:mb-0 md:mr-4">
-                        {/* <img src="/Images/profilepic.jpg" alt="Profile" className="object-cover w-45 h-45" /> */}
-                        {/* <div className="skeleton h-32 w-full"></div> */}
-                        <div className="avatar">
-                            <div className=" rounded">
-                                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                            </div>
+                    <div className="avatar rounded-xl overflow-hidden mb-4 md:mb-0 md:mr-4 w-40 h-40">
+                        <div className="w-40 h-40 rounded">
+                            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt={`${coach.firstName} ${coach.lastName}`} className="object-cover w-full h-full" />
                         </div>
                     </div>
 
-                    <div id="TEXT" className="flex-grow">
+                    <div id="TEXT" className="flex-grow max-w-2xl">
                         <div className="capitalize flex flex-col justify-between items-center mb-2 md:flex-row">
                             <h1 className="text-xl font-bold">{`${coach.firstName} ${coach.lastName}`}</h1>
                             <h1 className="text-xl font-bold">{ }</h1>
