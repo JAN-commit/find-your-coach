@@ -29,7 +29,7 @@ export default function HomePage() {
                 if (currentTime >= storedExpiryTime) {
                     localStorage.clear();
                     clearInterval(interval);
-                    alert("Session Expired. Please Login Again");
+                   // alert("Session Expired. Please Login Again");
                     Navigate('/login');
                 }
             }, 1000);
