@@ -37,7 +37,7 @@ export default function HomePage() {
             // Clean up interval on component unmount or when dependency changes
             return () => clearInterval(interval);
         } else {
-            Navigate('/login');
+           // Navigate('/login');
 
             
         }
