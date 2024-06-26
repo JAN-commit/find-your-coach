@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function Signup() {
     const [email, setEmail] = useState('');
@@ -35,6 +36,7 @@ export default function Signup() {
                 console.log("User signed up successfully!", data);
                 await assignRole(data.localId); // Assign role as 'user' upon successful signup
                 navigate('/login');
+                toast.success('Signup successful!');
             } else {
                 setError(data.error.message);
             }

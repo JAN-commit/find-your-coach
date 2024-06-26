@@ -13,11 +13,15 @@ import Signup from './Pages/Signup'
 import CoachRegistration from './Pages/CoachRegistration'
 import MessageRequest from './Pages/MessageRequest'
 
+import { ToastContainer, toast } from 'react-toastify';
+
 function App() {
 
   return (
     <Router>
       <div id="parent">
+        <ToastContainer />
+
         <Header />
         <div className=''>
           <Routes>

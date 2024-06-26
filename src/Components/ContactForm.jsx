@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Modal from './Modal'
+import { toast } from 'react-toastify';
 
 export default function ContactForm({ id, toggleModal }) {
 
@@ -44,6 +45,7 @@ export default function ContactForm({ id, toggleModal }) {
 
             const data = await response.json();
             console.log("Coach profile successfully updated:", data);
+            toast.success("Message successful send")
             toggleModal()
         } catch (error) {
             console.error(error)

@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -35,18 +37,21 @@ export default function Login() {
                 localStorage.setItem('idToken', data.idToken);
                 localStorage.setItem('localId', data.localId);
 
-                // Fetch user role after successful login
+                toast.success('Login successful!');
                 fetchUserRole(data.localId);
             } else {
+                toast.error('Please check email and password')
                 setError(data.error.message);
+                toast.error(data.error.message);
             }
         } catch (error) {
             setError('An error occurred. Please try again.');
+            toast.error('An error occurred. Please try again.');
         }
     };
 
     const fetchUserRole = async (localId) => {
-        const database = import.meta.env.VITE_FIREBASE_DB_URL
+        const database = import.meta.env.VITE_FIREBASE_DB_URL;
 
         try {
             const response = await fetch(`${database}account/${localId}.json`);
@@ -59,6 +64,7 @@ export default function Login() {
         } catch (error) {
             console.error('Error fetching user role:', error);
             setError('An error occurred while fetching user role. Please try again.');
+            toast.error('An error occurred while fetching user role. Please try again.');
         }
     };
 
@@ -97,9 +103,6 @@ export default function Login() {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
-                            {/* <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                            </label> */}
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Login</button>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { ToastContainer, toast } from 'react-toastify';
 export default function CoachRegistration() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -69,9 +69,14 @@ export default function CoachRegistration() {
 
             const data = await response.json();
             console.log("Coach profile successfully updated:", data);
+            toast.success('successful!');
+
             localStorage.setItem('userRole', 'coach');
 
-            navigate('/');
+            setInterval(() => {
+                navigate('/');
+
+            }, 1000);
         } catch (error) {
             console.error("Error updating coach profile:", error);
         }
@@ -79,6 +84,7 @@ export default function CoachRegistration() {
 
     return (
         <div id="parent" className='flex flex-col justify-center'>
+
             <div className="form-control w-full max-w-xs md:max-w-xl mx-auto">
                 <form onSubmit={Register_as_Coach}>
                     <div className="label">
