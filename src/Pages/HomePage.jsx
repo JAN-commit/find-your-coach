@@ -30,7 +30,7 @@ export default function HomePage() {
                     localStorage.clear();
                     clearInterval(interval);
                    // alert("Session Expired. Please Login Again");
-                   // Navigate('/login');
+                   Navigate('/');
                 }
             }, 1000);
 
