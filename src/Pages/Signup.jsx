@@ -34,7 +34,7 @@ export default function Signup() {
 
             if (response.ok) {
                 console.log("User signed up successfully!", data);
-                await assignRole(data.localId); // Assign role as 'user' upon successful signup
+                await assignRole(data.localId, data.idToken); 
                 navigate('/login');
                 toast.success('Signup successful!');
             } else {
@@ -45,23 +45,30 @@ export default function Signup() {
         }
     };
 
-    const assignRole = async (localId) => {
+    const assignRole = async (localId, idToken) => {
         const userData = {
-            role: 'user',
+            role: "user",
             email: email
         };
 
+        const cleanDbUrl = dburl.endsWith("/")
+            ? dburl.slice(0, -1)
+            : dburl;
+
         try {
-            const response = await fetch(`${dburl}/account/${localId}.json`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(userData)
-            });
+            const response = await fetch(
+                `${cleanDbUrl}/account/${localId}.json?auth=${idToken}`,
+                {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(userData),
+                }
+            );
 
             if (!response.ok) {
-                throw new Error('Network response was not ok.');
+                throw new Error("Network response was not ok.");
             }
 
             const data = await response.json();
@@ -70,6 +77,7 @@ export default function Signup() {
             console.error("Error assigning role:", error);
         }
     };
+
 
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -110,7 +118,11 @@ export default function Signup() {
                         <div className="form-control mt-6">
                             <button type="submit" className="btn btn-primary">Sign up</button>
                         </div>
+                        <div className="text-right py-3 hover:text-blue-300 cursor-pointer" onClick={() => { navigate('/Login') }}>
+                            Create an Account
+                        </div>
                     </form>
+                    
                 </div>
             </div>
         </div>

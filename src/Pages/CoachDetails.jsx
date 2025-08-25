@@ -45,8 +45,9 @@ export default function CoachDetails() {
                 <div className="flex flex-col md:flex-row items-center md:items-start">
                     <div className="avatar rounded-xl overflow-hidden mb-4 md:mb-0 md:mr-4 w-40 h-40">
                         <div className="w-40 h-40 rounded">
-                            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt={`${coach.firstName} ${coach.lastName}`} className="object-cover w-full h-full" />
-                        </div>
+                            {/* <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt={`${coach.firstName} ${coach.lastName}`} className="object-cover w-full h-full" /> */}
+                            <div className="skeleton h-32 w-32"></div>
+                       </div>
                     </div>
 
                     <div id="TEXT" className="flex-grow max-w-2xl">

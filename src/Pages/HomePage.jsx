@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CardContainer from '../Components/CardContainer';
 import { useNavigate } from 'react-router-dom';
-import Modal from '../Components/Modal';
 
 export default function HomePage() {
     const Navigate = useNavigate();
@@ -16,7 +15,6 @@ export default function HomePage() {
         fullstack: false,
     });
 
-
     useEffect(() => {
         const idToken = localStorage.getItem('idToken');
 
@@ -24,22 +22,15 @@ export default function HomePage() {
             const interval = setInterval(() => {
                 const currentTime = new Date();
                 const storedExpiryTime = new Date(localStorage.getItem('expiresIn'));
-                // const storedExpiryTime = new Date(500);
 
                 if (currentTime >= storedExpiryTime) {
                     localStorage.clear();
                     clearInterval(interval);
-                   // alert("Session Expired. Please Login Again");
-                   Navigate('/');
+                    Navigate('/');
                 }
             }, 1000);
 
-            // Clean up interval on component unmount or when dependency changes
             return () => clearInterval(interval);
-        } else {
-           // Navigate('/login');
-
-            
         }
     }, []);
 
@@ -57,11 +48,11 @@ export default function HomePage() {
             }
             const data = await response.json();
 
-
             const coaches = Object.keys(data).map(key => ({
                 id: key,
                 ...data[key]
             })).filter(user => user.role === 'coach');
+
             setCoachList(coaches);
             setLoading(false);
         } catch (error) {
@@ -87,23 +78,17 @@ export default function HomePage() {
         }
 
         const filtered = coachList.filter(coach => {
-            if (fullstack && coach.expertise.includes('Full Stack')) {
-                return true;
-            } else if (backend && coach.expertise.includes('Back End')) {
-                return true;
-            } else if (frontend && coach.expertise.includes('Front End')) {
-                return true;
-            }
+            if (fullstack && coach.expertise.includes('Full Stack')) return true;
+            if (backend && coach.expertise.includes('Back End')) return true;
+            if (frontend && coach.expertise.includes('Front End')) return true;
             return false;
         });
-
 
         setFilteredCoaches(filtered);
     };
 
     const handleCheckboxChange = (event) => {
         const { id, checked } = event.target;
-
         setFilters(prevFilters => ({
             ...prevFilters,
             [id]: checked
@@ -119,51 +104,62 @@ export default function HomePage() {
     };
 
     if (loading) {
-        return <div>Loading...</div>;
+        return (
+            <div className="flex justify-center items-center h-[80vh]">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-primary border-opacity-75"></div>
+            </div>
+        );
     }
 
-
-
-
-
-
     return (
-        <div id='BODY'>
-            
-            <div className="px-5">
-                <div id="filter" className='border border-white rounded-2xl px-5 py-1 text-center'>
-                    <div id="FILTER" className='text-2xl py-4'>
-                        <div className="font-bold text-xl pb-2">Select Filter</div>
-                        <div className="flex flex-col sm:flex-row sm:space-x-3 justify-center">
-                            <div className="flex items-center space-x-2 ">
-                                <input type="checkbox" id="frontend" className="w-3 h-3" onChange={handleCheckboxChange} />
-                                <label htmlFor="frontend" className='text-lg'>Front End</label>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                                <input type="checkbox" id="backend" className="w-3 h-3" onChange={handleCheckboxChange} />
-                                <label htmlFor="backend" className='text-lg'>Back End</label>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                                <input type="checkbox" id="fullstack" className="w-3 h-3" onChange={handleCheckboxChange} />
-                                <label htmlFor="fullstack" className='text-lg'>Full Stack</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id='button' className="flex justify-between py-5">
-                    <button className='btn btn-primary font-semibold text-white md:text-sm'
-                        onClick={() => { fetchCoaches() }}
-                    >Refresh List</button>
-                    {(role === 'user' || !role) && (
-                        <button className='btn btn-primary font-semibold text-white md:text-sm' onClick={navigateToRegistration}>
-                            {!islogin ? 'Login to Register as Coach' : 'Register as Coach'}
-                        </button>
-                    )}
+        <div id='BODY' className="max-w-7xl mx-auto px-4 md:px-8 py-6">
+            {/* Filter Section */}
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 shadow-lg border border-white/20">
+                <h2 className="text-2xl font-semibold text-center mb-4"> Filter Coaches</h2>
+                <div className="flex flex-col sm:flex-row sm:justify-center sm:space-x-6 gap-3">
+                    {["frontend", "backend", "fullstack"].map((filter) => (
+                        <label key={filter} className="flex items-center space-x-2 cursor-pointer">
+                            <input
+                                type="checkbox"
+                                id={filter}
+                                checked={filters[filter]}
+                                onChange={handleCheckboxChange}
+                                className="w-4 h-4 accent-indigo-600 rounded-md"
+                            />
+                            <span className="capitalize">{filter.replace("fullstack", "Full Stack").replace("frontend", "Front End").replace("backend", "Back End")}</span>
+                        </label>
+                    ))}
                 </div>
             </div>
 
-            <CardContainer coachList={filteredCoaches} />
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-3 mt-6">
+                <button
+                    className="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-xl shadow transition-all"
+                    onClick={fetchCoaches}
+                >
+                     Refresh List
+                </button>
+                {(role === 'user' || !role) && (
+                    <button
+                        className="px-5 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-xl shadow transition-all"
+                        onClick={navigateToRegistration}
+                    >
+                        {!islogin ? ' Login to Register as Coach' : 'Register as Coach'}
+                    </button>
+                )}
+            </div>
+
+            {/* Coaches List */}
+            <div className="mt-10">
+                {filteredCoaches.length > 0 ? (
+                    <CardContainer coachList={filteredCoaches} />
+                ) : (
+                    <div className="text-center text-gray-400 py-10">
+                        No coaches found. Try adjusting your filters.
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

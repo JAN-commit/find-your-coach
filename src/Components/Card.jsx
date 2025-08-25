@@ -22,9 +22,10 @@ export default function Card({ coach }) {
                     {/* <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /> */}
                     {/* <div className="skeleton h-32 w-full"></div> */}
                     <div className="avatar pt-3">
-                        <div className="w-36 rounded">
+                        {/* <div className="w-36 rounded">
                             <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                        </div>
+                        </div> */}
+                        <div className="skeleton h-32 w-32"></div>
                     </div>
 
                 </figure>

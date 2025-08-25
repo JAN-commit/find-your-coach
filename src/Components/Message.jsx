@@ -1,29 +1,35 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 export default function Message({ messages }) {
     return (
-        <div>
-
+        <div className="space-y-4">
             {messages.length > 0 ? (
                 messages.map((message, index) => (
-                    <div key={index} className="py-3">
-                        <div className="p-5 border border-white rounded-2xl text-sm md:text-base bg-base-200">
-                            <h1 className='text-xl font-semibold'>{message.email}</h1>
-
-                            
-                            <p className='text-justify py-5' style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}>
-                                {message.message}</p>
-                            <p className='text-right'>{message.date}</p>
+                    <div
+                        key={index}
+                        className="bg-white shadow-md rounded-xl p-5 border border-gray-100 hover:shadow-lg transition"
+                    >
+                        {/* Header */}
+                        <div className="flex justify-between items-center mb-3">
+                            <h1 className="text-lg font-semibold text-gray-800">
+                                {message.email || "Unknown Sender"}
+                            </h1>
+                            <span className="text-xs text-gray-400">
+                                {message.date || "Just now"}
+                            </span>
                         </div>
+
+                        {/* Message Content */}
+                        <p className="text-gray-600 text-sm leading-relaxed whitespace-pre-wrap break-words">
+                            {message.message || "No message content"}
+                        </p>
                     </div>
                 ))
             ) : (
-                <p>No messages found</p>
+                <div className="text-center py-10 text-gray-400">
+                    📭 No messages found
+                </div>
             )}
-
-
-
-
         </div>
     )
 }
