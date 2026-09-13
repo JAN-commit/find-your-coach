@@ -1,8 +1,46 @@
-# React + Vite
+# Coachmate
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple marketplace where developers find experienced engineers for one-on-one coaching sessions. Signed-in users get a dashboard view with a sidebar; guests see the public landing page.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 18 + Vite
+- Tailwind CSS (custom design system, no UI framework)
+- Firebase Auth + Realtime Database
+- React Router, React Toastify
+
+## Getting started
+
+1. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Create your environment file:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+3. Fill in your Firebase values in `.env`:
+
+   - `VITE_FIREBASE_API_KEY` — Firebase Web API key
+   - `VITE_FIREBASE_DB_URL` — Firebase Realtime Database URL
+
+4. Run the dev server:
+
+   ```bash
+   npm run dev
+   ```
+
+## Scripts
+
+- `npm run dev` — start the Vite dev server
+- `npm run build` — production build
+- `npm run preview` — preview the production build
+- `npm run lint` — run ESLint
+
+## Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md) for release history.
